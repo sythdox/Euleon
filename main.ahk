@@ -14,14 +14,14 @@ mainGui := Gui("+AlwaysOnTop -Resize", appName)
 mainGui.BackColor := "F0F0F0"
 mainGui.SetFont("s10", "Segoe UI")
 
-; === Header ===
+
 if FileExist(logoPath)
     mainGui.AddPicture("x10 y10 w32 h32", logoPath)
 mainGui.SetFont("s12 bold", "Segoe UI")
 mainGui.AddText("x50 y16 cBlack", appName)
 mainGui.SetFont("s10", "Segoe UI")
 
-; === Navigation Panel ===
+
 navX := 10, navY := 60, navW := 150, navH := 330
 mainGui.AddGroupBox("x" navX " y" navY " w" navW " h" navH, "Navigation")
 
@@ -37,7 +37,7 @@ for index, name in navItems {
     contentControls[name] := ctrl
 }
 
-; === Settings Tab ===
+
 settingsHeader := mainGui.AddText("x180 y70 w320 Center cBlack", "Settings")
 settingsHeader.Visible := false
 
@@ -56,7 +56,7 @@ toggleDarkMode.OnEvent("Click", (*) => (ApplyTheme(toggleDarkMode.Value), SaveSe
 
 contentControls["Settings"] := [settingsHeader, togglePrivate, psInput, toggleDarkMode]
 
-; === Games Tab ===
+
 gamesHeader := mainGui.AddText("x180 y70 w320 Center cBlack", "Games")
 gamesHeader.Visible := false
 
@@ -80,7 +80,7 @@ game2Label.Visible := false
 
 contentControls["Games"] := [gamesHeader, game1, game1Label, game2, game2Label]
 
-; === Credits Tab ===
+
 creditsHeader := mainGui.AddText("x180 y70 w320 Center cBlack", "Credits")
 creditsHeader.Visible := false
 
@@ -105,7 +105,7 @@ gunsLink.OnEvent("Click", (*) => Run("https://guns.lol/sythdox"))
 
 contentControls["Credits"] := [creditsHeader, picDU, discordUser, picDS, discordServer, picGL, gunsLink]
 
-; === Theme Function ===
+
 ApplyTheme(isDarkMode) {
     global mainGui, contentControls
 
@@ -125,7 +125,7 @@ ApplyTheme(isDarkMode) {
     }
 }
 
-; === Page Switching ===
+
 ShowPage(name*) {
     global contentControls
     thisTab := name[1]
@@ -147,7 +147,7 @@ ShowPage(name*) {
     }
 }
 
-; === Settings Persistence ===
+
 LoadSettings() {
     global togglePrivate, psInput, toggleDarkMode, settingsFile
 
@@ -194,7 +194,8 @@ SaveSettings() {
     FileAppend json, settingsFile
 }
 
-; === Start GUI ===
+
 mainGui.Show("w540 h440")
 LoadSettings()
 ShowPage("Home")
+
